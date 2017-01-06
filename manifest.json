@@ -1,0 +1,36 @@
+{
+  //manifest spec: http://developer.chrome.com/extensions/manifest.html
+  //required
+  "name": "чатометр",
+  "version": "1.0",
+  "manifest_version": 2,
+  //recommended
+  "description": "Chrome extension description written here.",
+  "icons": {
+    "16": "images/16x16.png",
+    "48": "images/48x48.png",
+    "128": "images/128x128.png"
+  },
+  "background": {
+    "scripts": [
+      "js/bg.js"
+    ]
+  },
+  //required
+  "browser_action": {
+    "default_title": "Чатометр",
+    "default_icon": {
+      "16": "images/16x16.png",
+      "48": "images/48x48.png"
+    }
+  },
+  "permissions": [
+    "tabs",
+    "storage",
+    "https://www.google-analytics.com/"
+  ],
+  //additional
+  "options_page": "html/options.html",
+  "homepage_url": "http://nikkas.ru/",
+  "content_security_policy": "script-src 'self' https://api.vk.com; object-src 'self'"
+}
