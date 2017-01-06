@@ -64,6 +64,8 @@ function loaderShow() {
   //  'border-bottom-width': '4px'
   //});
   $('.loader').removeClass('hidden');
+  $('.loader__progress-bar').width('0%');
+  $('.loader__percent').text('0%');
 }
 
 function loaderHide() {
@@ -160,6 +162,9 @@ function redrawChatList(chats) {
   var chats_container = document.querySelector('.chats');
   chats_container.innerHTML = "";
 
+  if (chats_container.className.indexOf('visible') === -1)
+    chats_container.classList.add('visible');
+
   for (var i = 0; i < chats.length; i++) {
     var chat = chats[i];
     chats_container.appendChild(constructChatEntry(chat.message.chat_id, chat.message.title));
@@ -173,8 +178,11 @@ function constructChatEntry(id, title) {
   entry.innerHTML = title;
 
   entry.onclick = function() {
+    document.querySelector('.chats').innerHTML = '';
+    document.querySelector('.chats').classList.remove('visible');
+    document.querySelector('.stat__container').innerHTML = '';
     startChatLoad(parseInt(this.dataset.id));
-  }
+  };
 
   return entry;
 }
